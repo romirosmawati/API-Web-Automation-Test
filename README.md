@@ -1,4 +1,4 @@
-# API-Web-Autimation-Test
+# API-Web-Automation-Test
 
 Final Project ini dibuat dengan spesifikasi berikut:
 1. Java 11
@@ -13,7 +13,7 @@ Final Project ini dibuat dengan spesifikasi berikut:
 10. Chrome v125.xx
 11. Gradle 7.6.4
 
-Pembuatan project ini bertujuan untuk pengujian Web secara api untuk web https://www.demoblaze.com/ dan API pada web https://gorest.co.in/.
+Pembuatan project ini bertujuan untuk pengujian Web secara otomatis untuk web https://www.demoblaze.com/ dan API pada web https://gorest.co.in/.
 Tahap-tahap yang dilakukan untuk membuat project sebagai berikut:
 1. set depedencies Selenium, WebDriverManager, Cucumber, Junit dll yang akan di simpan pada file build.gradle
    ![image](https://github.com/romirosmawati/Web-API-Automation/assets/32626103/f4506b2f-c2fa-4997-a368-19d346405817)
