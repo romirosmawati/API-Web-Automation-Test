@@ -27,9 +27,14 @@ dependencies {
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 }
 
+sourceCompatibility = 11
+targetCompatibility = 11
 test {
     useJUnitPlatform()
     systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    testLogging {
+        showStandardStreams = true
+    }
 }
 configurations {
     cucumberRuntime {
