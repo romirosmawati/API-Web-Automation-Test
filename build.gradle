@@ -31,10 +31,6 @@ sourceCompatibility = 11
 targetCompatibility = 11
 test {
     useJUnitPlatform()
-    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
-    testLogging {
-        showStandardStreams = true
-    }
 }
 configurations {
     cucumberRuntime {
@@ -42,29 +38,10 @@ configurations {
     }
 }
 
-//def tags = (findProperty('tags') == null) ? 'not @exlude' : findProperty('tags') + ' and not @exlude'
+def tags = (findProperty('tags') == null) ? 'not @exlude' : findProperty('tags') + ' and not @exlude'
 
-tasks.register('cucumberApiTests') {
-    description = "Run Cucumber tests"
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = [
-                    '--plugin', 'html:reports/api-tests.html',
-                    '--plugin', 'json:reports/api-tests.json',
-                    '--plugin', 'pretty',
-                    '--glue', 'api.StepDef',
-                    '--tags', "@api",
-                    'src/test/resources/features'
-            ]
-        }
-    }
-}
-
-tasks.register('cucumberWebTests') {
-    description = "Run Cucumber tests with tag @web"
+tasks.register('cucumber') {
+    description("Running Cucumber Test")
     dependsOn assemble, compileTestJava
     doLast {
         javaexec {
@@ -75,7 +52,8 @@ tasks.register('cucumberWebTests') {
                     '--plugin', 'json:reports/web-tests.json',
                     '--plugin', 'pretty',
                     '--glue', 'web.StepDef',
-                    '--tags', '@web',
+                    '--glue', 'api.StepDef',
+                    '--tags', "${tags}",
                     'src/test/resources/features'
             ]
         }
